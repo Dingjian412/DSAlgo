@@ -40,21 +40,27 @@ def print_singly_linked_list(node, sep, fptr):
 #
 #
 def insertNodeAtHead(llist, data):
-    newNode=SinglyLinkedListNode(data)
-    result=[]
-    if not (llist):
-        llist=newNode
-        result.append(llist.data)
-    else:
-        while(llist):
-            result.append(llist.data)
-            if llist.next:
-                llist = llist.next
-            else:
-                llist.next = newNode
-                result.append(newNode)
-    return result
+    node=SinglyLinkedListNode(data)
+    node.next=llist
+    return node
 
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    llist_count = int(input())
+
+    llist = SinglyLinkedList()
+
+    for _ in range(llist_count):
+        llist_item = int(input())
+        llist_head = insertNodeAtHead(llist.head, llist_item)
+        llist.head = llist_head
+
+    print_singly_linked_list(llist.head, '\n', fptr)
+    fptr.write('\n')
+
+    fptr.close()
 
 
 
